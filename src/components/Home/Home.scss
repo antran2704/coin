@@ -1,0 +1,84 @@
+@import "../../variable.scss";
+
+.home {
+  width: 100%;
+  height: 500px;
+  background-image: url("../../assets/imgs/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: 100%;
+  background-color: rgba(242, 158, 51, 0.25);
+  padding: 0 60px;
+
+  @include mobile {
+    padding: 0 20px;
+  }
+}
+
+.home__content {
+  height: 100%;
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: $white-color;
+  font-size: 1.8rem;
+  gap: 20px;
+
+  @include mobile {
+    max-width: unset;
+    width: 100%;
+    text-align: center;
+  }
+}
+.home__title {
+  font-size: 4rem;
+
+  @include mobile {
+    font-size: 3.2rem;
+  }
+}
+.home__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @include mobile {
+    align-items: center;
+  }
+}
+
+.home__body-desc {
+  font-weight: 600;
+}
+.home__footer {
+  position: relative;
+  max-width: 280px;
+  transition: all ease 0.2s;
+
+  @include mobile {
+    max-width: 220px;
+  }
+}
+.home__body-btn {
+  max-width: 280px;
+  max-height: 80px;
+  cursor: pointer;
+
+  @include mobile {
+    max-width: 220px;
+  }
+}
+.home__body-recomend {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-style: italic;
+}

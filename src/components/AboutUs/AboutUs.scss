@@ -1,0 +1,60 @@
+@import "../../variable.scss";
+
+.about {
+}
+
+.about__header {
+  background-image: url("../../assets/imgs/depositBackground.png");
+  width: 100%;
+  height: 600px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.about__title {
+  font-size: 3rem;
+  text-align: center;
+  margin: 20px 0;
+}
+.about__body {
+  font-size: 1.8rem;
+}
+.about__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.about__content-title {
+  margin: 10px 0;
+}
+.about__content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 24px;
+}
+
+.about__item {
+}
+
+.about__item-second {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.about__item-title {
+}
+.about__item-desc {
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}

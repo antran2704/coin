@@ -1,0 +1,19 @@
+$text-color: rgba(102,102,102,.85);
+$text-hover: rgba(17,17,17,.85);
+$white-color: #fff;
+
+$tablet-width: 900px;
+$mobile-width: 580px;
+
+
+@mixin tablet {
+    @media only screen and (max-width: $tablet-width) {
+        @content;
+    }
+};
+
+@mixin mobile {
+    @media only screen and (max-width: $mobile-width) {
+        @content;
+    }
+};

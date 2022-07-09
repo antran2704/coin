@@ -1,0 +1,71 @@
+@import "../../variable.scss";
+
+.deposit {
+}
+.deposit__header-img {
+  width: 100%;
+  height: 370px;
+  background-image: url("../../assets/imgs/depositBackground.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.deposit__wrap {
+  margin-top: 40px;
+}
+.deposit__content {
+    margin: 60px 0;
+}
+.deposit__line {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.deposit__title {
+  position: absolute;
+  font-size: 2rem;
+  padding: 6px 16px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  text-align: center;
+
+  @include tablet {
+    font-size: 1.8rem;
+  }
+
+  @include mobile {
+    min-width: 80%;
+  }
+}
+
+.deposit__desc {
+  margin: 40px 0;
+  font-size: 2rem;
+
+  @include tablet {
+    font-size: 1.6rem;
+  }
+
+  @include mobile {
+    font-size: 1.4rem;
+    text-align: justify;
+  }
+}
+
+.deposit__wrap-img {
+    display: grid;
+    justify-content: center;
+    gap: 30px;
+}
+
+.deposit__img {
+    max-width: 280px;
+    // max-height: 400px;
+
+    & img {
+        width: 100%;
+        height: 100%;
+    }
+}

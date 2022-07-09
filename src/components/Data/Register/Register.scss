@@ -1,0 +1,12 @@
+@import "../../../variable.scss";
+
+.signup-desc {
+    max-width: 320px;
+    text-align: justify;
+    margin: 0 auto;
+    font-size: 1.2rem;
+
+    @include tablet {
+        max-width: unset;
+      }
+}

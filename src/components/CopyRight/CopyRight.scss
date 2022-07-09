@@ -1,0 +1,18 @@
+@import "../../variable.scss";
+
+.copyright {
+  font-size: 1.4rem;
+  padding: 10px 40px;
+
+  @include tablet {
+    padding: 10px 20px;
+    text-align: center;
+  }
+}
+
+.copyright__content {
+  color: rgba(0, 0, 0, 0.5);
+
+  & strong {
+  }
+}
