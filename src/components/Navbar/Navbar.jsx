@@ -1,17 +1,15 @@
-import "./Navbar.scss";
-import imgs from "../../assets/imgs";
-import data from "./index";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { HiOutlineMenu } from "react-icons/hi";
-import { AiOutlineClose } from "react-icons/ai";
 import { useEffect, useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
+import { HiOutlineMenu } from "react-icons/hi";
+import { Link } from "react-router-dom";
+import imgs from "../../assets/imgs";
 import { useViewport } from "../../hooks/hook";
+import data from "./index";
+import "./Navbar.scss";
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
   const [url,setUrl] = useState(window.location.pathname)
-  console.log(url)
 
   const [width] = useViewport();
   function handleMenu() {
@@ -28,7 +26,7 @@ function Navbar() {
     const items = document.querySelectorAll(".navbar__menu-link");
     items.forEach(function (item) {
       item.classList.remove("navbar__menu-link--active");
-      if(item.pathname == url) {
+      if(item.pathname === url) {
         item.classList.add("navbar__menu-link--active");
       }
     });

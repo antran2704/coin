@@ -1,6 +1,6 @@
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { ReCaptcha } from "react-recaptcha-google";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Footer from "../../Footer/Footer";
 import "../Login/Login.scss";
 import "./Register.scss";
@@ -11,7 +11,10 @@ import * as type from "../index";
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || []);
   const [width] = useViewport();
+
+  localStorage.setItem("user",JSON.stringify(user))
 
   function handleShowPassword(e) {
     const parent = e.target.closest(".login__wrap-input");
@@ -25,6 +28,34 @@ function Register() {
     }
     setShowPassword(!showPassword);
   }
+
+  function getValue(e, data) {
+    e.preventDefault();
+    let user = [];
+
+    data.map(function (item) {
+      const input = document.querySelector(`input[name= ${item.name}]`);
+      const value = input.value.trim();
+      const wrap = input.closest(".login__wrap");
+      const error = wrap.querySelector(".login__error");
+
+      if (!value) {
+        input.classList.add("error");
+        input.classList.remove("succes");
+        error.innerText = "This field is required";
+      }
+      if (input.classList.contains("error")) {
+        console.log("khong dang ky duoc");
+      } else {
+        user = { ...user, [item.name]: input.value };
+      }
+    });
+    setUser((prev) => [...prev,user])
+  }
+
+ useEffect(() => {
+  console.log(JSON.parse(localStorage.getItem("user")))
+ },[user])
 
   return (
     <div className="lorgin__container margin-top">
@@ -71,8 +102,8 @@ function Register() {
           })}
 
           <button
-            onClick={() => {
-              type.getValue(["name", "email", "password"]);
+            onClick={(e) => {
+              getValue(e, inputs);
             }}
             className="login__btn"
           >
