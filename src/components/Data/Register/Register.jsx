@@ -172,7 +172,8 @@ function Register() {
           })}
           <ReCAPTCHA
             ref={captchaElement}
-            sitekey="6LeIl9kgAAAAACO7ozHnUjI-S2azK9sSyuTk-hIi"
+            // sitekey="6LeIl9kgAAAAACO7ozHnUjI-S2azK9sSyuTk-hIi"
+            sitekey="6LdNFd0gAAAAAPue0LM1sq_L364UGitWMBWTkJ1U"
             size="normal"
             data-theme="dark"
             render="explicit"
