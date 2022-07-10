@@ -1,6 +1,6 @@
 const data = [
     {
-        to: "/",
+        to: "/coin",
         content: "Home"
     },
     {
