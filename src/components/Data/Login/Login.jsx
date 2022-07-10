@@ -139,25 +139,25 @@ function Login() {
             <a href="">Login</a>
           </button>
           <p className="messenger"></p>
-          <a href="" className="login__forgot-pasword">
+          <a href="#" className="login__forgot-pasword">
             Forgot your password?
           </a>
         </div>
         <div className="login__footer">
           <p className="login__footer-header">
             Don't have an account?
-            <Link onClick={loading} to="/signup" className="login__register">
+            <a href="/coin/signup" className="login__register">
               Register
-            </Link>
+            </a>
           </p>
           <div className="login__footer-body">
-            <a href="/" className="login__footer-link">
+            <a href="#" className="login__footer-link">
               Privacy Notice
             </a>
-            <a href="/" className="login__footer-link">
+            <a href="#" className="login__footer-link">
               Cookies Notice
             </a>
-            <a href="/" className="login__footer-link">
+            <a href="#" className="login__footer-link">
               Cookies Settings
             </a>
           </div>

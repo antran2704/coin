@@ -122,7 +122,7 @@ function Register() {
   useEffect(() => {
     console.log(JSON.parse(localStorage.getItem("user")));
     if(login === true) {
-      window.location.pathname = "/login"
+      window.location.pathname = "/coin/login"
     }
     setLogin(false)
   }, [user]);
@@ -198,18 +198,18 @@ function Register() {
         <div className="login__footer">
           <p className="login__footer-header">
             Already have an account?
-            <Link onClick={loading} to="/login" className="login__register">
+            <a href="/coin/login" className="login__register">
               Login
-            </Link>
+            </a>
           </p>
           <div className="login__footer-body">
-            <a href="/" className="login__footer-link">
+            <a href="#" className="login__footer-link">
               Privacy Notice
             </a>
-            <a href="/" className="login__footer-link">
+            <a href="#" className="login__footer-link">
               Cookies Notice
             </a>
-            <a href="/" className="login__footer-link">
+            <a href="#" className="login__footer-link">
               Cookies Settings
             </a>
           </div>

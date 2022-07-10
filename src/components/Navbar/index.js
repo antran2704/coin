@@ -4,19 +4,19 @@ const data = [
         content: "Home"
     },
     {
-        to: "/deposit",
+        to: "/coin/deposit",
         content: "Deposit-Withdraw"
     },
     {
-        to: "/blog",
+        to: "/coin/blog",
         content: "Blog"
     },
     {
-        to: "/about-us",
+        to: "/coin/about-us",
         content: "About us"
     },
     {
-        to: "/contact-us",
+        to: "/coin/contact-us",
         content: "Contact us"
     },
 ]

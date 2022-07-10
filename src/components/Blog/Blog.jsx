@@ -19,7 +19,7 @@ function Blog() {
         >
           {data.map((item, index) => {
             return (
-              <div className="blog__item">
+              <div key={index} className="blog__item">
                 <div className="blog__header">
                   <h2 className="blog__title">{item.title}</h2>
                   <p className="blog__desc">{item.desc}</p>

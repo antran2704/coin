@@ -10,7 +10,8 @@ import "./Navbar.scss";
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
-  const [url,setUrl] = useState(window.location.pathname)
+  const [url,setUrl] = useState("/coin")
+  console.log(window.location.pathname)
   const loading = useContext(LoadingTheme)
 
   const [width] = useViewport();
@@ -70,7 +71,7 @@ function Navbar() {
             })}
           </ul>
           <button onClick={loading} className="navbar__btn">
-            <Link to="/login" className="navbar__btn-link">
+            <Link to="/coin/login" className="navbar__btn-link">
               Login
             </Link>
           </button>
