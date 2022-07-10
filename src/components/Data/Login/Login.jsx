@@ -146,9 +146,9 @@ function Login() {
         <div className="login__footer">
           <p className="login__footer-header">
             Don't have an account?
-            <a href="/coin/signup" className="login__register">
+            <Link to="/coin/signup" className="login__register">
               Register
-            </a>
+            </Link>
           </p>
           <div className="login__footer-body">
             <a href="#" className="login__footer-link">
