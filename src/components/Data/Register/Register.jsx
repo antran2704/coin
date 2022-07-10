@@ -173,7 +173,7 @@ function Register() {
           <ReCAPTCHA
             ref={captchaElement}
             // sitekey="6LeIl9kgAAAAACO7ozHnUjI-S2azK9sSyuTk-hIi"
-            sitekey="6LdKGd0gAAAAADtMC7jqhmuXj3mFYsxSxh9zj8ov"
+            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
             size="normal"
             data-theme="dark"
             render="explicit"
