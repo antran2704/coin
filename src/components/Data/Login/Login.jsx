@@ -1,18 +1,24 @@
-import "./Login.scss";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { ReCaptcha } from "react-recaptcha-google";
 import { useRef, useState } from "react";
-import Footer from "../../Footer/Footer";
-import { useViewport } from "../../../hooks/hook";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
-import inputs from "./index";
+import { useViewport } from "../../../hooks/hook";
+import Footer from "../../Footer/Footer";
 import * as type from "../index";
+import inputs from "./index";
+import "./Login.scss";
+import { useContext } from "react";
+import { LoadingTheme } from "../../../App";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [users, setUsers] = useState(JSON.parse(localStorage.getItem("user")));
-  const navigate = useNavigate();
-  console.log(users);
+  const [users, setUsers] = useState(
+    JSON.parse(localStorage.getItem("user")) || []
+  );
+  const captchaElement = useRef();
+  const [captcha, setCaptcha] = useState(false);
+  const loading = useContext(LoadingTheme);
+
   const [width] = useViewport();
   function handleShowPassword(e) {
     const parent = e.target.closest(".login__wrap-input");
@@ -27,23 +33,50 @@ function Login() {
     setShowPassword(!showPassword);
   }
 
-  function handleCheckUser(e, inputs) {
+  function checkCaptcha() {
+    setCaptcha(true);
+  }
+
+  function handleCheckUser(e) {
     e.preventDefault();
-    // console.log(inputs)
-    inputs.map((input, index) => {
-      const valueEmail = document.querySelector("input[name = email]").value;
-      const valuePassword = document.querySelector(
-        "input[name = password]"
-      ).value;
-      users.map((user, index) => {
-        if (valueEmail == user.email && valuePassword == user.password) {
-          // console.log(window.location)
-          window.location.href = "https://my.shopcoinusa.com/profile";
-        } else {
-          console.log("dang nhap that bai");
-        }
-      });
-    });
+    console.log("start")
+    console.log(users)
+    const messenger = document.querySelector(".messenger");
+    const valueEmail = document.querySelector("input[name = email]").value;
+    const valuePassword = document.querySelector(
+      "input[name = password]"
+    ).value;
+      {users.length > 0 &&
+          users.map((user, index) => {
+            console.log(1)
+            if (
+              valueEmail == user.email &&
+              valuePassword == user.password &&
+              captcha === true
+            ) {
+              messenger.innerText = "";
+              loading();
+              window.location.href = "https://my.shopcoinusa.com/";
+            } else {
+              {
+                console.log(2)
+
+                  valueEmail != user.email &&
+                  valuePassword != user.password&&
+                  captcha === true &&
+                  captchaElement.current.reset();
+                  messenger.innerText = "Email or password incorrect!";
+                  loading();
+              }
+            }
+          });
+      }
+
+    if (users.length == 0 && valueEmail && valuePassword && captcha === true) {
+      messenger.innerText = "Email or password incorrect!";
+      captchaElement.current.reset();
+      loading();
+    }
   }
   return (
     <div className="lorgin__container margin-top">
@@ -88,7 +121,14 @@ function Login() {
               </div>
             );
           })}
-
+          <ReCAPTCHA
+            ref={captchaElement}
+            sitekey="6LeIl9kgAAAAACO7ozHnUjI-S2azK9sSyuTk-hIi"
+            size="normal"
+            data-theme="dark"
+            render="explicit"
+            onChange={checkCaptcha}
+          />
           <button
             onClick={function (e) {
               handleCheckUser(e, inputs);
@@ -97,6 +137,7 @@ function Login() {
           >
             <a href="">Login</a>
           </button>
+          <p className="messenger"></p>
           <a href="" className="login__forgot-pasword">
             Forgot your password?
           </a>

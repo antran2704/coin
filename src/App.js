@@ -8,22 +8,41 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import Login from "./components/Data/Login/Login";
 import CopyRight from "./components/CopyRight/CopyRight";
 import Register from "./components/Data/Register/Register";
+import Loading from "./components/Loading/Loading";
+import { createContext, useEffect, useState } from "react";
+export const LoadingTheme = createContext();
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  function loading() {
+    setIsLoading(true);
+  }
+  useEffect(() => {
+    const handle = setTimeout(function () {
+      setIsLoading(false);
+    }, 1000);
+    return () => {
+      clearTimeout(handle);
+    };
+  }, [isLoading]);
   return (
     <div className="App">
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/deposit" element={<Deposit />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Register />} />
-        </Routes>
-        <CopyRight />
-      </Router>
+      <LoadingTheme.Provider value={loading}>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/deposit" element={<Deposit />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Register />} />
+          </Routes>
+          {isLoading && <Loading />}
+          <CopyRight />
+        </Router>
+      </LoadingTheme.Provider>
     </div>
   );
 }

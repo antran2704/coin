@@ -1,6 +1,7 @@
-import "./Home.scss"
 import imgs from "../../assets/imgs";
+import "./Home.scss";
 function Home() {
+ 
   return (
     <div className="home margin-top">
       <div className="home-overlay">

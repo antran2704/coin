@@ -1,20 +1,37 @@
+import { useEffect, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { ReCaptcha } from "react-recaptcha-google";
-import { useEffect, useRef, useState } from "react";
-import Footer from "../../Footer/Footer";
-import "../Login/Login.scss";
-import "./Register.scss";
+import { useNavigate } from "react-router-dom";
 import { useViewport } from "../../../hooks/hook";
-import getValue from "../index";
-import inputs from "./index";
+
+import { useContext, useRef } from "react";
+import { LoadingTheme } from "../../../App";
+import Footer from "../../Footer/Footer";
 import * as type from "../index";
+import "../Login/Login.scss";
+import inputs from "./index";
+import "./Register.scss";
 
 function Register() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || []);
+  const captchaElement = useRef()
+  const navigate = useNavigate()
+  const loading = useContext(LoadingTheme)
   const [width] = useViewport();
+  const [showPassword, setShowPassword] = useState(false);
+  const [captcha, setCaptcha] = useState(false);
+  const [login, setLogin] = useState(false)
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || []
+  );
+  const [accounts, setAccounts] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
 
-  localStorage.setItem("user",JSON.stringify(user))
+  localStorage.setItem("user", JSON.stringify(user));
+
+  function checkCaptcha() {
+    setCaptcha(true);
+  }
 
   function handleShowPassword(e) {
     const parent = e.target.closest(".login__wrap-input");
@@ -32,6 +49,7 @@ function Register() {
   function getValue(e, data) {
     e.preventDefault();
     let user = [];
+    let created = true
 
     data.map(function (item) {
       const input = document.querySelector(`input[name= ${item.name}]`);
@@ -50,12 +68,64 @@ function Register() {
         user = { ...user, [item.name]: input.value };
       }
     });
-    setUser((prev) => [...prev,user])
+
+    if (accounts.length > 0) {
+      accounts.map((account) => {
+        if (
+          account.email == user.email &&
+          account.name == user.name &&
+          account.password == user.password &&
+          captcha 
+        ) {
+          const messenger = document.querySelector(".messenger")
+          const valueEmail = document.querySelector("input[name = email]")
+          const valueUserName = document.querySelector("input[name = name]")
+          const valuePassword = document.querySelector("input[name = password]")
+          messenger.innerText = "accout already exist!"
+          valueEmail.value = ''
+          valueUserName.value = ''
+          valuePassword.value = ''
+          created = false
+          captchaElement.current.reset()
+        } 
+      });
+      if(
+        created === true &&
+        user.name &&
+        user.email &&
+        user.password &&
+        captcha) {  
+        const messenger = document.querySelector(".messenger")
+        messenger.innerText = ""
+        setUser((prev) => [...prev, user]);
+        setCaptcha(false);
+        setLogin(true)
+        loading()
+      }
+      
+    } else {
+      {
+          user.name &&
+          user.email &&
+          user.password &&
+          captcha &&
+          setUser((prev) => [...prev, user]);
+          const messenger = document.querySelector(".messenger")
+          messenger.innerText = ""
+          setCaptcha(false);
+          setLogin(true)
+          loading()
+      }
+    }
   }
 
- useEffect(() => {
-  console.log(JSON.parse(localStorage.getItem("user")))
- },[user])
+  useEffect(() => {
+    console.log(JSON.parse(localStorage.getItem("user")));
+    if(login === true) {
+      window.location.pathname = "/login"
+    }
+    setLogin(false)
+  }, [user]);
 
   return (
     <div className="lorgin__container margin-top">
@@ -100,7 +170,14 @@ function Register() {
               </div>
             );
           })}
-
+          <ReCAPTCHA
+            ref={captchaElement}
+            sitekey="6LeIl9kgAAAAACO7ozHnUjI-S2azK9sSyuTk-hIi"
+            size="normal"
+            data-theme="dark"
+            render="explicit"
+            onChange={checkCaptcha}
+          />
           <button
             onClick={(e) => {
               getValue(e, inputs);
@@ -109,6 +186,7 @@ function Register() {
           >
             <a href="#">Register</a>
           </button>
+          <p className="messenger"></p>
           <p className="signup-desc">
             By registering I confirm I have read and agree to Terms of Use. We
             send occasional marketing messages which can be switched off in
