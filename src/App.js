@@ -1,21 +1,20 @@
-import "./App.scss";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
-import Blog from "./components/Blog/Blog";
-import Home from "./components/Home/Home";
-import Deposit from "./components/Deposit/Deposit";
-import AboutUs from "./components/AboutUs/AboutUs";
-import Login from "./components/Data/Login/Login";
-import CopyRight from "./components/CopyRight/CopyRight";
-import Register from "./components/Data/Register/Register";
-import Loading from "./components/Loading/Loading";
 import { createContext, useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.scss";
+import AboutUs from "./components/AboutUs/AboutUs";
+import Blog from "./components/Blog/Blog";
 import ContactUs from "./components/ContactUs/ContactUs";
+import CopyRight from "./components/CopyRight/CopyRight";
+import Login from "./components/Data/Login/Login";
+import Register from "./components/Data/Register/Register";
+import Deposit from "./components/Deposit/Deposit";
+import Home from "./components/Home/Home";
+import Loading from "./components/Loading/Loading";
+import Navbar from "./components/Navbar/Navbar";
 export const LoadingTheme = createContext();
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
   function loading() {
     setIsLoading(true);
   }
@@ -23,7 +22,6 @@ function App() {
     const handle = setTimeout(function () {
       setIsLoading(false);
     }, 1000);
-    navigate("/")
     return () => {
       clearTimeout(handle);
     };
