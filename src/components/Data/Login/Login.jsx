@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useViewport } from "../../../hooks/hook";
 import Footer from "../../Footer/Footer";
 import * as type from "../index";
@@ -146,9 +146,9 @@ function Login() {
         <div className="login__footer">
           <p className="login__footer-header">
             Don't have an account?
-            <a href="/signup" className="login__register">
+            <Link onClick={loading} to="/signup" className="login__register">
               Register
-            </a>
+            </Link>
           </p>
           <div className="login__footer-body">
             <a href="/" className="login__footer-link">

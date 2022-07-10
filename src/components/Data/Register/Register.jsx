@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useViewport } from "../../../hooks/hook";
 
 import { useContext, useRef } from "react";
@@ -198,9 +198,9 @@ function Register() {
         <div className="login__footer">
           <p className="login__footer-header">
             Already have an account?
-            <a href="/login" className="login__register">
+            <Link onClick={loading} to="/login" className="login__register">
               Login
-            </a>
+            </Link>
           </p>
           <div className="login__footer-body">
             <a href="/" className="login__footer-link">

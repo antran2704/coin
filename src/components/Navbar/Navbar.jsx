@@ -46,7 +46,7 @@ function Navbar() {
         >
           <AiOutlineClose onClick={handleMenu} className="navbar__btn-close" />
         </div>
-        <Link onClick={loading} to="/" className="navbar__logo">
+        <Link onClick={loading} to="/coin" className="navbar__logo">
           <img src={imgs.logo} alt="" className="navbar__logo-img" />
         </Link>
         <div className="navbar-body">
