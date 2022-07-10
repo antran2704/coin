@@ -1,5 +1,5 @@
 import "./App.scss";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Blog from "./components/Blog/Blog";
 import Home from "./components/Home/Home";
@@ -15,7 +15,7 @@ export const LoadingTheme = createContext();
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-
+  const navigate = useNavigate();
   function loading() {
     setIsLoading(true);
   }
@@ -23,10 +23,12 @@ function App() {
     const handle = setTimeout(function () {
       setIsLoading(false);
     }, 1000);
+    navigate("/")
     return () => {
       clearTimeout(handle);
     };
   }, [isLoading]);
+
   return (
     <div className="App">
       <LoadingTheme.Provider value={loading}>
