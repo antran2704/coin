@@ -155,7 +155,7 @@ function AboutUs() {
   },[])
   
   return (
-    <div className="container margin-top">
+    <div className="container">
       <div className="about">
         <div className="about__header">
           <canvas ref={convas} id="canvas"></canvas>

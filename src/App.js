@@ -10,6 +10,7 @@ import CopyRight from "./components/CopyRight/CopyRight";
 import Register from "./components/Data/Register/Register";
 import Loading from "./components/Loading/Loading";
 import { createContext, useEffect, useState } from "react";
+import ContactUs from "./components/ContactUs/ContactUs";
 export const LoadingTheme = createContext();
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
             <Route path="/deposit" element={<Deposit />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Register />} />
           </Routes>
