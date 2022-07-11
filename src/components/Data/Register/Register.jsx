@@ -200,9 +200,9 @@ function Register() {
         <div className="login__footer">
           <p className="login__footer-header">
             Already have an account?
-            <Link to="/login" className="login__register">
+            <a href="/login" className="login__register">
               Login
-            </Link>
+            </a>
           </p>
           <div className="login__footer-body">
             <a href="#" className="login__footer-link">

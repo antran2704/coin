@@ -10,8 +10,7 @@ import "./Navbar.scss";
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
-  const [url, setUrl] = useState("");
-  console.log(window.location.pathname);
+  const [url, setUrl] = useState(window.location.pathname);
   const loading = useContext(LoadingTheme);
 
   const [width] = useViewport();
