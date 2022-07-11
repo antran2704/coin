@@ -24,7 +24,7 @@ function Register() {
     JSON.parse(localStorage.getItem("user")) || []
   );
   const [accounts, setAccounts] = useState(
-    JSON.parse(localStorage.getItem("user") || [])
+    JSON.parse(localStorage.getItem("user"))
   );
 
   localStorage.setItem("user", JSON.stringify(user));
