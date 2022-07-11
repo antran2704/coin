@@ -33,13 +33,13 @@ function App() {
         <Router>
           <Navbar />
           <Routes>
-            <Route path="/coin" element={<Home />} />
-            <Route path="/coin/deposit" element={<Deposit />} />
-            <Route path="/coin/blog" element={<Blog />} />
-            <Route path="/coin/about-us" element={<AboutUs />} />
-            <Route path="/coin/contact-us" element={<ContactUs />} />
-            <Route path="/coin/login" element={<Login />} />
-            <Route path="/coin/signup" element={<Register />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/deposit" element={<Deposit />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Register />} />
           </Routes>
           {isLoading && <Loading />}
           <CopyRight />

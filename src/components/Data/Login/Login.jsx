@@ -39,38 +39,39 @@ function Login() {
 
   function handleCheckUser(e) {
     e.preventDefault();
-    console.log("start")
-    console.log(users)
+    console.log("start");
+    console.log(users);
     const messenger = document.querySelector(".messenger");
     const valueEmail = document.querySelector("input[name = email]").value;
     const valuePassword = document.querySelector(
       "input[name = password]"
     ).value;
-      {users.length > 0 &&
-          users.map((user, index) => {
-            console.log(1)
-            if (
-              valueEmail == user.email &&
-              valuePassword == user.password &&
-              captcha === true
-            ) {
-              messenger.innerText = "";
-              loading();
-              window.location.href = "https://my.shopcoinusa.com/";
-            } else {
-              {
-                console.log(2)
+    {
+      users.length > 0 &&
+        users.map((user, index) => {
+          console.log(1);
+          if (
+            valueEmail == user.email &&
+            valuePassword == user.password &&
+            captcha === true
+          ) {
+            messenger.innerText = "";
+            loading();
+            window.location.href = "https://my.shopcoinusa.com/";
+          } else {
+            {
+              console.log(2);
 
-                  valueEmail != user.email &&
-                  valuePassword != user.password&&
-                  captcha === true &&
-                  captchaElement.current.reset();
-                  messenger.innerText = "Email or password incorrect!";
-                  loading();
-              }
+              valueEmail != user.email &&
+                valuePassword != user.password &&
+                captcha === true &&
+                captchaElement.current.reset();
+              messenger.innerText = "Email or password incorrect!";
+              loading();
             }
-          });
-      }
+          }
+        });
+    }
 
     if (users.length == 0 && valueEmail && valuePassword && captcha === true) {
       messenger.innerText = "Email or password incorrect!";
@@ -146,7 +147,7 @@ function Login() {
         <div className="login__footer">
           <p className="login__footer-header">
             Don't have an account?
-            <Link to="/coin/signup" className="login__register">
+            <Link to="/signup" className="login__register">
               Register
             </Link>
           </p>

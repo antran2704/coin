@@ -1,24 +1,24 @@
 const data = [
-    {
-        to: "/coin",
-        content: "Home"
-    },
-    {
-        to: "/coin/deposit",
-        content: "Deposit-Withdraw"
-    },
-    {
-        to: "/coin/blog",
-        content: "Blog"
-    },
-    {
-        to: "/coin/about-us",
-        content: "About us"
-    },
-    {
-        to: "/coin/contact-us",
-        content: "Contact us"
-    },
-]
+  {
+    to: "/",
+    content: "Home",
+  },
+  {
+    to: "/deposit",
+    content: "Deposit-Withdraw",
+  },
+  {
+    to: "/blog",
+    content: "Blog",
+  },
+  {
+    to: "/about-us",
+    content: "About us",
+  },
+  {
+    to: "/contact-us",
+    content: "Contact us",
+  },
+];
 
 export default data;

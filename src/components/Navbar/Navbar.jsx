@@ -10,9 +10,9 @@ import "./Navbar.scss";
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
-  const [url,setUrl] = useState("/coin")
-  console.log(window.location.pathname)
-  const loading = useContext(LoadingTheme)
+  const [url, setUrl] = useState("");
+  console.log(window.location.pathname);
+  const loading = useContext(LoadingTheme);
 
   const [width] = useViewport();
   function handleMenu() {
@@ -22,18 +22,18 @@ function Navbar() {
   }
 
   function handleActive(to) {
-    setUrl(to)
+    setUrl(to);
   }
 
   useEffect(() => {
     const items = document.querySelectorAll(".navbar__menu-link");
     items.forEach(function (item) {
       item.classList.remove("navbar__menu-link--active");
-      if(item.pathname === url) {
+      if (item.pathname === url) {
         item.classList.add("navbar__menu-link--active");
       }
     });
-  },[url])
+  }, [url]);
 
   return (
     <div className="navbar">
@@ -47,7 +47,7 @@ function Navbar() {
         >
           <AiOutlineClose onClick={handleMenu} className="navbar__btn-close" />
         </div>
-        <Link onClick={loading} to="/coin" className="navbar__logo">
+        <Link onClick={loading} to="/" className="navbar__logo">
           <img src={imgs.logo} alt="" className="navbar__logo-img" />
         </Link>
         <div className="navbar-body">
@@ -59,7 +59,7 @@ function Navbar() {
                     onClick={function () {
                       handleMenu();
                       handleActive(item.to);
-                      loading()
+                      loading();
                     }}
                     to={item.to}
                     className="navbar__menu-link"
@@ -71,7 +71,7 @@ function Navbar() {
             })}
           </ul>
           <button onClick={loading} className="navbar__btn">
-            <Link to="/coin/login" className="navbar__btn-link">
+            <Link to="/login" className="navbar__btn-link">
               Login
             </Link>
           </button>

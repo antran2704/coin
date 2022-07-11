@@ -13,18 +13,18 @@ import inputs from "./index";
 import "./Register.scss";
 
 function Register() {
-  const captchaElement = useRef()
-  const navigate = useNavigate()
-  const loading = useContext(LoadingTheme)
+  const captchaElement = useRef();
+  const navigate = useNavigate();
+  const loading = useContext(LoadingTheme);
   const [width] = useViewport();
   const [showPassword, setShowPassword] = useState(false);
   const [captcha, setCaptcha] = useState(false);
-  const [login, setLogin] = useState(false)
+  const [login, setLogin] = useState(false);
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || []
   );
   const [accounts, setAccounts] = useState(
-    JSON.parse(localStorage.getItem("user"))
+    JSON.parse(localStorage.getItem("user") || [])
   );
 
   localStorage.setItem("user", JSON.stringify(user));
@@ -49,7 +49,7 @@ function Register() {
   function getValue(e, data) {
     e.preventDefault();
     let user = [];
-    let created = true
+    let created = true;
 
     data.map(function (item) {
       const input = document.querySelector(`input[name= ${item.name}]`);
@@ -75,56 +75,58 @@ function Register() {
           account.email == user.email &&
           account.name == user.name &&
           account.password == user.password &&
-          captcha 
+          captcha
         ) {
-          const messenger = document.querySelector(".messenger")
-          const valueEmail = document.querySelector("input[name = email]")
-          const valueUserName = document.querySelector("input[name = name]")
-          const valuePassword = document.querySelector("input[name = password]")
-          messenger.innerText = "accout already exist!"
-          valueEmail.value = ''
-          valueUserName.value = ''
-          valuePassword.value = ''
-          created = false
-          captchaElement.current.reset()
-        } 
+          const messenger = document.querySelector(".messenger");
+          const valueEmail = document.querySelector("input[name = email]");
+          const valueUserName = document.querySelector("input[name = name]");
+          const valuePassword = document.querySelector(
+            "input[name = password]"
+          );
+          messenger.innerText = "accout already exist!";
+          valueEmail.value = "";
+          valueUserName.value = "";
+          valuePassword.value = "";
+          created = false;
+          captchaElement.current.reset();
+        }
       });
-      if(
+      if (
         created === true &&
         user.name &&
         user.email &&
         user.password &&
-        captcha) {  
-        const messenger = document.querySelector(".messenger")
-        messenger.innerText = ""
+        captcha
+      ) {
+        const messenger = document.querySelector(".messenger");
+        messenger.innerText = "";
         setUser((prev) => [...prev, user]);
         setCaptcha(false);
-        setLogin(true)
-        loading()
+        setLogin(true);
+        loading();
       }
-      
     } else {
       {
-          user.name &&
+        user.name &&
           user.email &&
           user.password &&
           captcha &&
           setUser((prev) => [...prev, user]);
-          const messenger = document.querySelector(".messenger")
-          messenger.innerText = ""
-          setCaptcha(false);
-          setLogin(true)
-          loading()
+        const messenger = document.querySelector(".messenger");
+        messenger.innerText = "";
+        setCaptcha(false);
+        setLogin(true);
+        loading();
       }
     }
   }
 
   useEffect(() => {
     console.log(JSON.parse(localStorage.getItem("user")));
-    if(login === true) {
-      window.location.pathname = "/coin/login"
+    if (login === true) {
+      window.location.pathname = "/login";
     }
-    setLogin(false)
+    setLogin(false);
   }, [user]);
 
   return (
@@ -198,7 +200,7 @@ function Register() {
         <div className="login__footer">
           <p className="login__footer-header">
             Already have an account?
-            <Link to="/coin/login" className="login__register">
+            <Link to="/login" className="login__register">
               Login
             </Link>
           </p>
