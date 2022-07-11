@@ -9,6 +9,8 @@
 html {
   font-family: "Lato", sans-serif;
   font-size: 62.5%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
 
   &::-webkit-scrollbar {
     background-color: transparent;
@@ -22,6 +24,11 @@ html {
     overflow-y: overlay;
   }
 }
+
+body {
+  overflow-y: overlay;
+}
+
 .App {
 }
 a {
