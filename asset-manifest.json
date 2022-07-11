@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.988558c8.css",
-    "main.js": "./static/js/main.71e1ee43.js",
+    "main.js": "./static/js/main.d536e756.js",
     "static/media/depositBackground.png": "./static/media/depositBackground.9b3ee14ec4976a3e237b.png",
     "static/media/deposit14.jpg": "./static/media/deposit14.e40710b639c28606abda.jpg",
     "static/media/deposit8.jpg": "./static/media/deposit8.388ede3d28be40f78b63.jpg",
@@ -24,10 +24,10 @@
     "static/media/logo.png": "./static/media/logo.0da8eb7ad34ca79ce3f4.png",
     "index.html": "./index.html",
     "main.988558c8.css.map": "./static/css/main.988558c8.css.map",
-    "main.71e1ee43.js.map": "./static/js/main.71e1ee43.js.map"
+    "main.d536e756.js.map": "./static/js/main.d536e756.js.map"
   },
   "entrypoints": [
     "static/css/main.988558c8.css",
-    "static/js/main.71e1ee43.js"
+    "static/js/main.d536e756.js"
   ]
 }
