@@ -175,7 +175,7 @@ function Register() {
           <ReCAPTCHA
             ref={captchaElement}
             // sitekey="6LeIl9kgAAAAACO7ozHnUjI-S2azK9sSyuTk-hIi"
-            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+            sitekey="6Ld9vOEgAAAAAPaBQgDKRs3Iq55KSvuxj5_AFamI"
             size="normal"
             data-theme="dark"
             render="explicit"
