@@ -15,7 +15,7 @@ import "./Register.scss";
 function Register() {
   const captchaElement = useRef();
   const navigate = useNavigate();
-  const loading = useContext(LoadingTheme);
+  const { loading } = useContext(LoadingTheme);
   const [width] = useViewport();
   const [showPassword, setShowPassword] = useState(false);
   const [captcha, setCaptcha] = useState(false);

@@ -15,13 +15,21 @@ export const LoadingTheme = createContext();
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [render, setRender] = useState(false);
+  console.log(render)
+
   function loading() {
     setIsLoading(true);
+  }
+
+  function handleRender() {
+    setRender(false)
   }
   useEffect(() => {
     const handle = setTimeout(function () {
       setIsLoading(false);
-    }, 1000);
+      setRender(true);
+    }, 1400);
     return () => {
       clearTimeout(handle);
     };
@@ -29,14 +37,14 @@ function App() {
 
   return (
     <div className="App">
-      <LoadingTheme.Provider value={loading}>
+      <LoadingTheme.Provider value={{loading,handleRender}}>
         <Router>
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/deposit" element={<Deposit />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/deposit" element={<Deposit render = {render}/>} />
+            <Route path="/blog" element={<Blog render = {render}/>} />
+            <Route path="/about-us" element={<AboutUs render = {render}/>} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Register />} />

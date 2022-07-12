@@ -3,13 +3,13 @@ import { scrollToTop, useScrollToTop, useViewport } from "../../hooks/hook";
 import "./Deposit.scss";
 import data from "./index";
 
-function Deposit() {
+function Deposit({render}) {
   const [width] = useViewport();
   const [top] = useScrollToTop()
  
   return (
     <div className="container margin-top">
-      <div className="deposit">
+      {render && <div className="deposit">
         <div className="deposit__header-img"></div>
         <div className="deposit__wrap">
           {data.map((item, index) => {
@@ -45,7 +45,7 @@ function Deposit() {
             );
           })}
         </div>
-      </div>
+      </div>}
       <BsArrowUpCircle onClick={scrollToTop} className={`scroll-top ${top > 500 ? "show" : "hidden"}`} />
     </div>
   );

@@ -4,14 +4,15 @@ import { HiOutlineMenu } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { LoadingTheme } from "../../App";
 import imgs from "../../assets/imgs";
-import { useViewport } from "../../hooks/hook";
+import { useViewport, scrollToTop } from "../../hooks/hook";
 import data from "./index";
 import "./Navbar.scss";
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
   const [url, setUrl] = useState(window.location.pathname);
-  const loading = useContext(LoadingTheme);
+  const { loading } = useContext(LoadingTheme);
+  const { handleRender } = useContext(LoadingTheme);
 
   const [width] = useViewport();
   function handleMenu() {
@@ -46,7 +47,14 @@ function Navbar() {
         >
           <AiOutlineClose onClick={handleMenu} className="navbar__btn-close" />
         </div>
-        <Link onClick={loading} to="/" className="navbar__logo">
+        <Link
+          onClick={() => {
+            handleActive("/");
+            loading();
+          }}
+          to="/"
+          className="navbar__logo"
+        >
           <img src={imgs.logo} alt="" className="navbar__logo-img" />
         </Link>
         <div className="navbar-body">
@@ -58,6 +66,8 @@ function Navbar() {
                     onClick={function () {
                       handleMenu();
                       handleActive(item.to);
+                      scrollToTop();
+                      handleRender();
                       loading();
                     }}
                     to={item.to}
@@ -69,7 +79,13 @@ function Navbar() {
               );
             })}
           </ul>
-          <button onClick={loading} className="navbar__btn">
+          <button
+            onClick={() => {
+              loading();
+              handleActive("/login");
+            }}
+            className="navbar__btn"
+          >
             <Link to="/login" className="navbar__btn-link">
               Login
             </Link>

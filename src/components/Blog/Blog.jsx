@@ -3,13 +3,14 @@ import { BsArrowUpCircle } from "react-icons/bs";
 
 import data from "./index";
 import "./Blog.scss";
-function Blog() {
+function Blog({render}) {
   const [width] = useViewport();
   const [top] = useScrollToTop()
+
   return (
     <div className="blog">
       <div className="container">
-        <div
+        {render && <div
           className="blog__list"
           style={{
             gridTemplateColumns: `repeat(${
@@ -31,7 +32,7 @@ function Blog() {
               </div>
             );
           })}
-        </div>
+        </div>}
       </div>
       <BsArrowUpCircle onClick={scrollToTop} className={`scroll-top ${top > 500 ? "show" : "hidden"}`} />
     </div>
