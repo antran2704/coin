@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useViewport } from "../../../hooks/hook";
 
 import { useContext, useRef } from "react";
@@ -14,20 +14,19 @@ import "./Register.scss";
 
 function Register() {
   const captchaElement = useRef();
-  const navigate = useNavigate();
   const { loading } = useContext(LoadingTheme);
   const [width] = useViewport();
   const [showPassword, setShowPassword] = useState(false);
   const [captcha, setCaptcha] = useState(false);
   const [login, setLogin] = useState(false);
-  const [user, setUser] = useState(
+  const [users, setUsers] = useState(
     JSON.parse(localStorage.getItem("user")) || []
   );
   const [accounts, setAccounts] = useState(
     JSON.parse(localStorage.getItem("user"))
   );
-
-  localStorage.setItem("user", JSON.stringify(user));
+  // console.log(accounts)
+  localStorage.setItem("user", JSON.stringify(users));
 
   function checkCaptcha() {
     setCaptcha(true);
@@ -63,30 +62,36 @@ function Register() {
         error.innerText = "This field is required";
       }
       if (input.classList.contains("error")) {
-        console.log("khong dang ky duoc");
+        // logic
       } else {
         user = { ...user, [item.name]: input.value };
       }
     });
 
-    if (accounts.length > 0) {
+    if (accounts) {
       accounts.map((account) => {
+        const messenger = document.querySelector(".messenger");
+        const valueEmail = document.querySelector("input[name = email]");
+        const valueUserName = document.querySelector("input[name = name]");
+        const valuePassword = document.querySelector(
+          "input[name = password]"
+        );
         if (
           account.email == user.email &&
           account.name == user.name &&
           account.password == user.password &&
           captcha
         ) {
-          const messenger = document.querySelector(".messenger");
-          const valueEmail = document.querySelector("input[name = email]");
-          const valueUserName = document.querySelector("input[name = name]");
-          const valuePassword = document.querySelector(
-            "input[name = password]"
-          );
           messenger.innerText = "accout already exist!";
           valueEmail.value = "";
           valueUserName.value = "";
           valuePassword.value = "";
+          created = false;
+          captchaElement.current.reset();
+        }
+        if(account.email == user.email) {
+          messenger.innerText = "Email is already in use";
+          valueEmail.value = "";
           created = false;
           captchaElement.current.reset();
         }
@@ -100,7 +105,7 @@ function Register() {
       ) {
         const messenger = document.querySelector(".messenger");
         messenger.innerText = "";
-        setUser((prev) => [...prev, user]);
+        setUsers((prev) => [...prev, user]);
         setCaptcha(false);
         setLogin(true);
         loading();
@@ -111,7 +116,7 @@ function Register() {
           user.email &&
           user.password &&
           captcha &&
-          setUser((prev) => [...prev, user]);
+          setUsers((prev) => [...prev, user]);
         const messenger = document.querySelector(".messenger");
         messenger.innerText = "";
         setCaptcha(false);
@@ -122,12 +127,11 @@ function Register() {
   }
 
   useEffect(() => {
-    console.log(JSON.parse(localStorage.getItem("user")));
     if (login === true) {
       window.location.pathname = "/login";
     }
     setLogin(false);
-  }, [user]);
+  }, [users]);
 
   return (
     <div className="lorgin__container margin-top">
@@ -174,7 +178,9 @@ function Register() {
           })}
           <ReCAPTCHA
             ref={captchaElement}
+            // sitekey local
             // sitekey="6LeIl9kgAAAAACO7ozHnUjI-S2azK9sSyuTk-hIi"
+            // sitekey domain 
             sitekey="6Ld9vOEgAAAAAPaBQgDKRs3Iq55KSvuxj5_AFamI"
             size="normal"
             data-theme="dark"

@@ -15,9 +15,10 @@ function Login() {
   const [users, setUsers] = useState(
     JSON.parse(localStorage.getItem("user")) || []
   );
+  console.log(users)
   const captchaElement = useRef();
   const [captcha, setCaptcha] = useState(false);
-  const {loading} = useContext(LoadingTheme);
+  const { loading } = useContext(LoadingTheme);
 
   const [width] = useViewport();
   function handleShowPassword(e) {
@@ -63,9 +64,9 @@ function Login() {
               console.log(2);
 
               valueEmail != user.email &&
-                valuePassword != user.password &&
-                captcha === true &&
-                captchaElement.current.reset();
+              valuePassword != user.password &&
+              captcha === true &&
+              captchaElement.current.reset();
               messenger.innerText = "Email or password incorrect!";
               loading();
             }
@@ -124,7 +125,9 @@ function Login() {
           })}
           <ReCAPTCHA
             ref={captchaElement}
+            // sitekey local
             // sitekey="6LeIl9kgAAAAACO7ozHnUjI-S2azK9sSyuTk-hIi"
+            // sitekey domain 
             sitekey="6Ld9vOEgAAAAAPaBQgDKRs3Iq55KSvuxj5_AFamI"
             size="normal"
             data-theme="dark"
