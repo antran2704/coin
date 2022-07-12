@@ -6,7 +6,7 @@ function CopyRight() {
       <div className="container">
           <p className="copyright__content">
             Copyright 2022 © 
-            <strong> AnTranDev</strong>
+            <strong> AntranDev</strong>
           </p>
       </div>
     </div>
