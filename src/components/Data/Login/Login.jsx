@@ -57,7 +57,7 @@ function Login() {
           ) {
             messenger.innerText = "";
             loading();
-            window.location.href = "https://my.shopcoinusa.com/";
+            window.location.href = "https://my-shop-coin.vercel.app/";
           } else {
             {
               console.log(2);
