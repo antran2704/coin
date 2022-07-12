@@ -17,7 +17,7 @@ function Login() {
   );
   const captchaElement = useRef();
   const [captcha, setCaptcha] = useState(false);
-  const { loading } = useContext(LoadingTheme);
+  const {loading} = useContext(LoadingTheme);
 
   const [width] = useViewport();
   function handleShowPassword(e) {
