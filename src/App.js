@@ -16,7 +16,6 @@ export const LoadingTheme = createContext();
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [render, setRender] = useState(false);
-  console.log(render)
 
   function loading() {
     setIsLoading(true);

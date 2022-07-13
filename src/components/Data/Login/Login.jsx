@@ -15,7 +15,6 @@ function Login() {
   const [users, setUsers] = useState(
     JSON.parse(localStorage.getItem("user")) || []
   );
-  console.log(users)
   const captchaElement = useRef();
   const [captcha, setCaptcha] = useState(false);
   const { loading } = useContext(LoadingTheme);
