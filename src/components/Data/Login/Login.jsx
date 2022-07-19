@@ -40,7 +40,7 @@ function Login() {
   function handleCheckUser(e) {
     e.preventDefault();
     const messenger = document.querySelector(".messenger");
-    const valueEmail = document.querySelector("input[name = email]").value.handleShowPassword;
+    const valueEmail = document.querySelector("input[name = email]").value;
     const valuePassword = document.querySelector(
       "input[name = password]"
     ).value;
