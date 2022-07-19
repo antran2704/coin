@@ -39,29 +39,24 @@ function Login() {
 
   function handleCheckUser(e) {
     e.preventDefault();
-    console.log("start");
-    console.log(users);
     const messenger = document.querySelector(".messenger");
-    const valueEmail = document.querySelector("input[name = email]").value;
+    const valueEmail = document.querySelector("input[name = email]").value.toLowerCase();
     const valuePassword = document.querySelector(
       "input[name = password]"
     ).value;
     {
       users.length > 0 &&
         users.map((user, index) => {
-          console.log(1);
           if (
             valueEmail == user.email &&
             valuePassword == user.password &&
             captcha === true
-          ) {
-            messenger.innerText = "";
-            loading();
-            window.location.href = "https://my-shop-coin.vercel.app/";
+            ) {
+              messenger.innerText = "";
+              loading();
+              window.location.href = "https://my-shop-coin.vercel.app/";
           } else {
             {
-              console.log(2);
-
               valueEmail != user.email &&
               valuePassword != user.password &&
               captcha === true &&
